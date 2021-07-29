@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  app-next:
+    build: 
+      context: ./app-next/
+      dockerfile: ./Dockerfile
+    container_name: "app-nextjs"
+    ports:
+      - 8000:3000
+  app-nuxt:
+    build: 
+      context: ./app-nuxt/
+      dockerfile: ./Dockerfile
+    container_name: "app-nuxtjs"
+    ports:
+      - 8001:3000
+  reverse-proxy:
+    image: nginx
+    volumes: 
+      - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
