@@ -126,7 +126,7 @@ export default function Home() {
       </HStack>
       <StatGroup w="50%" flexWrap="nowrap">
         <Stat>
-          <StatLabel>React useState</StatLabel>
+          <StatLabel>React state</StatLabel>
           <StatNumber wordBreak="break-all" p=".25rem">
             {name}
           </StatNumber>
