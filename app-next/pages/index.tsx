@@ -1,9 +1,6 @@
 import {
-  Box,
   Button,
   chakra,
-  Flex,
-  FormControl,
   HStack,
   Input,
   NumberDecrementStepper,
@@ -15,23 +12,17 @@ import {
   SliderFilledTrack,
   SliderThumb,
   SliderTrack,
-  Spacer,
   Stat,
   StatGroup,
   StatLabel,
   StatNumber,
-  Table,
-  Text,
-  useFormControl,
   VStack,
 } from "@chakra-ui/react";
-import { css } from "@emotion/react";
 import Head from "next/head";
-import React, { useCallback, useEffect, useReducer, useState } from "react";
+import React, { useCallback, useEffect, useReducer } from "react";
 import { useCountValue, useSetCount } from "../hooks/useCount";
 
 import Link from "next/link";
-import { useSessionStorage } from "../hooks/useSesstionStorage";
 
 const useLocalStorage = <Key extends string>(key: Key) => {
   type State = {

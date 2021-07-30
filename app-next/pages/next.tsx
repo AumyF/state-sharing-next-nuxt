@@ -1,35 +1,15 @@
 import {
-  Box,
   Button,
   chakra,
-  Flex,
-  HStack,
-  NumberDecrementStepper,
-  NumberIncrementStepper,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  Slider,
-  SliderFilledTrack,
-  SliderThumb,
-  SliderTrack,
-  Spacer,
   Stat,
   StatLabel,
   StatNumber,
-  Text,
   VStack,
 } from "@chakra-ui/react";
-import { css } from "@emotion/react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import React from "react";
-import {
-  useCountValue,
-  useIncrement10Count,
-  useSetCount,
-} from "../hooks/useCount";
+import { useCountValue, useIncrement10Count } from "../hooks/useCount";
 
 const Page: NextPage = () => {
   const count = useCountValue();
