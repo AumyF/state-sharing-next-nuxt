@@ -53,9 +53,11 @@ const useLocalStorage = <Key extends string>(key: Key) => {
     }
   };
 
+  const initialValue = globalThis.localStorage?.getItem(key) ?? "";
+
   const [state, dispatch] = useReducer(reducer, {
-    storageValue: "",
-    value: "",
+    storageValue: initialValue,
+    value: initialValue,
   });
 
   useEffect(() => {
@@ -68,29 +70,21 @@ const useLocalStorage = <Key extends string>(key: Key) => {
 
   const writeStorage = useCallback(() => {
     localStorage.setItem(key, state.value);
+    dispatch(["pullStorage"]);
   }, [key, state.value]);
 
-  const pullStorage = useCallback(() => dispatch(["pullStorage"]), []);
-
-  return { state, setValue, writeStorage, pullStorage } as const;
+  return { state, setValue, writeStorage } as const;
 };
 
 export default function Home() {
   const count = useCountValue();
   const setCount = useSetCount();
 
-  // const [, setName] = useSessionStorage("name", "");
-  const [name, setName] = useState(
-    globalThis.localStorage?.getItem("name") ?? "",
-  );
-
-  const [localStorageName, setLocalStorageName] = useState("");
-
-  const pullLocalStorageValue = () => {
-    setLocalStorageName(localStorage.getItem("name") ?? "");
-  };
-
-  useEffect(pullLocalStorageValue, [setLocalStorageName]);
+  const {
+    state: { storageValue: storageName, value: name },
+    setValue: setName,
+    writeStorage,
+  } = useLocalStorage("name");
 
   const handleChange = useCallback(
     (event: React.FormEvent<HTMLInputElement>) => {
@@ -98,11 +92,6 @@ export default function Home() {
     },
     [setName],
   );
-
-  const handleClick = useCallback(() => {
-    localStorage.setItem("name", name);
-    pullLocalStorageValue();
-  }, [name]);
 
   return (
     <VStack
@@ -138,8 +127,9 @@ export default function Home() {
           type="text"
           onChange={handleChange}
           placeholder="Tell me your name"
+          value={name}
         />
-        <Button onClick={handleClick} flexShrink={0}>
+        <Button onClick={writeStorage} flexShrink={0}>
           Write to local storage
         </Button>
       </HStack>
@@ -153,7 +143,7 @@ export default function Home() {
         <Stat>
           <StatLabel>Local Storage</StatLabel>
           <StatNumber wordBreak="break-all" p=".25rem">
-            {localStorageName}
+            {storageName}
           </StatNumber>
         </Stat>
       </StatGroup>
