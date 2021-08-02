@@ -1,6 +1,6 @@
 FROM node:lts-slim AS build
 
-WORKDIR /opt/vue
+WORKDIR /opt/react
 
 COPY src src
 COPY ./index.html ./index.html
@@ -14,4 +14,4 @@ RUN npm run build
 
 FROM nginx
 
-COPY --from=build /opt/vue/dist /usr/share/nginx/html
+COPY --from=build /opt/react/dist /usr/share/nginx/html

@@ -4,27 +4,24 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate",
-    "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
-    "lint": "npm run lint:js"
+    "build": " vite build",
+    "serve": "vite preview"
   },
   "dependencies": {
     "@chakra-ui/vue-next": "^1.0.0-alpha.8",
-    "@typescript-eslint/eslint-plugin": "^4.28.5",
-    "@typescript-eslint/parser": "^4.28.5",
     "@vitejs/plugin-vue": "^1.3.0",
     "@vitejs/plugin-vue-jsx": "^1.1.7",
     "@vueuse/motion": "^1.5.6",
     "pinia": "^2.0.0-beta.5",
-    "typescript": "^4.3.5",
     "vite": "^2.4.4",
     "vue": "^3.1.5",
     "vue-router": "^4.0.10",
     "vue-tsc": "^0.2.2"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.28.5",
+    "@typescript-eslint/parser": "^4.28.5",
+    "typescript": "^4.3.5",
     "@types/node": "^16.4.8",
     "eslint": "^7.29.0",
     "eslint-config-prettier": "^8.3.0",

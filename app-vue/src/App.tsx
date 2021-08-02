@@ -46,6 +46,9 @@ export default defineComponent({
             <CButton as="a" {...{ href: "/react-counter" }}>
               /react-counter
             </CButton>
+            <CButton as="a" {...{ href: "/react-name" }}>
+              /react-counter
+            </CButton>
             {links.map(({ href, route, isActive, navigate }) => (
               <CButton
                 as="a"
